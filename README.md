@@ -23,3 +23,7 @@ Upon completion, the console will print "Success". Your README file will now be 
 The license badges used in the generated README were created by github user Lukas-h (https://gist.github.com/lukas-h)
 
 ## Walkthrough Video
+
+
+https://user-images.githubusercontent.com/81662512/235815881-6dbbeb34-67d2-4951-b1be-bca3ecb0f5b0.mp4
+
