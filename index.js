@@ -2,20 +2,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// List of licenses
-const licenses = ['Apache License 2.0',
-'GNU General Public License v3.0',
-'MIT License',
-'BSD 2-Clause "Simplified" License',
-'BSD 3-Clause "New" or "Revised" License',
-'Boost Software License 1.0',
-'Creative Commons Zero v1.0 Universal',
-'Eclipse Public License 2.0',
-'GNU Affero General Public License v3.0',
-'GNU General Public License v2.0',
-'GNU Lesser General Public License v2.1',
-'Mozilla Public License 2.0',
-'The Unlicense'];
+// List of licenses and badges, CREDIT github user lukas-h for badges
+const licenses = ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'BSD 2-Clause "Simplified" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal'];
+
+const badges = [
+    {license: 'Apache License 2.0', badge: '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'},
+    {license: 'GNU General Public License v3.0', badge: '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'},
+    {license: 'MIT License', badge: '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'},
+    {license: 'BSD 2-Clause "Simplified" License', badge: '[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause'},
+    {license: 'Boost Software License 1.0', badge: '[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)'},
+    {license: 'Creative Commons Zero v1.0 Universal', badge: '[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)'},
+];
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -69,9 +66,20 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
+    // Get the proper badge for the license
+    var yourBadge = "";
+    for (let i = 0; i < badges.length; i++) {
+        if (badges[i].license == data.license) {
+            yourBadge = badges[i].badge;
+        }
+    }
+    console.log(yourBadge);
+
     // Write the README
     var content = 
 `# ${data.title}
+
+${yourBadge}
 
 ## Description
 
@@ -82,9 +90,9 @@ ${data.description}
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [Testing](#testing)
+- [Tests](#testing)
 - [License](#license)
-- [Contact](#contact)
+- [Questions](#contact)
 
 ## Installation
 
@@ -98,13 +106,15 @@ ${data.usage}
 
 ${data.contribution}
 
-## Testing
+## Tests
 
 ${data.test}
 
 ## License
 
-## Contact
+This project is under the ${data.license} license.
+
+## Questions
 
 [github.com/${data.username}](www.github.com/${data.username})
 
